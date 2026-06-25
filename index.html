@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bias Check Theatre — raw, perspective-driven independent theatre and stage productions.">
+  <title>Bias Check Theatre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0b;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(139, 30, 45, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(20, 80, 90, 0.12) 0%, transparent 50%);
+      color: #f5f5f5;
+      min-height: 100dvh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 32px 20px 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .profile-image {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .profile-bio {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 340px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    nav.social-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .social-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f5f5f5;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .social-bar a:hover,
+    .social-bar a:active {
+      background: rgba(255, 255, 255, 0.12);
+      transform: scale(1.02);
+      border-color: rgba(200, 55, 70, 0.4);
+      color: #e85d6f;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .featured-block {
+      position: relative;
+      display: block;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(139, 30, 45, 0.25) 0%, rgba(20, 80, 90, 0.15) 100%);
+      border: 1px solid rgba(200, 55, 70, 0.35);
+      text-decoration: none;
+      color: #ffffff;
+      overflow: hidden;
+      transition: all 0.2s ease-in-out;
+      margin-bottom: 8px;
+    }
+
+    .featured-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(200, 55, 70, 0.6), rgba(45, 160, 170, 0.3), rgba(200, 55, 70, 0.6));
+      background-size: 200% 200%;
+      animation: borderGlow 4s ease infinite;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    @keyframes borderGlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .featured-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e85d6f;
+      margin-bottom: 6px;
+    }
+
+    .featured-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .featured-block:hover,
+    .featured-block:active {
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(139, 30, 45, 0.25);
+    }
+
+    .link-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      justify-content: center;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .link-btn i {
+      font-size: 1rem;
+      color: #e85d6f;
+      flex-shrink: 0;
+      position: absolute;
+      left: 18px;
+    }
+
+    .link-btn {
+      position: relative;
+    }
+
+    .link-btn span {
+      flex: 1;
+    }
+
+    .link-btn:hover,
+    .link-btn:active {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.02);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    section.video-hub {
+      margin-top: 8px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    section.newsletter {
+      margin-top: 8px;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .newsletter h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 14px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .newsletter-form input[type="email"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(0, 0, 0, 0.35);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.875rem;
+      outline: none;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .newsletter-form input[type="email"]::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .newsletter-form input[type="email"]:focus {
+      border-color: rgba(200, 55, 70, 0.5);
+      box-shadow: 0 0 0 3px rgba(200, 55, 70, 0.15);
+    }
+
+    .newsletter-form button {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #8b1e2d 0%, #c83746 100%);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .newsletter-form button:hover,
+    .newsletter-form button:active {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(200, 55, 70, 0.35);
+      opacity: 0.95;
+    }
+
+    footer {
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.02em;
+    }
+
+    @media (min-width: 481px) {
+      .page-wrapper {
+        padding-top: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header>
+      <img
+        class="profile-image"
+        src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=150"
+        alt="Bias Check Theatre profile"
+        width="96"
+        height="96"
+      >
+      <h1 class="profile-name">Bias Check Theatre</h1>
+      <p class="profile-bio">Raw, perspective-driven independent theatre. We stage bold stories that challenge assumptions and celebrate authentic voices on stage.</p>
+    </header>
+
+    <nav class="social-bar" aria-label="Social media links">
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+      </a>
+      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+      </a>
+      <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:biaschecktheatre@gmail.com" aria-label="Email">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      </a>
+    </nav>
+
+    <main>
+      <a class="featured-block" href="https://in.bookmyshow.com" target="_blank" rel="noopener noreferrer">
+        <span class="featured-label">Featured</span>
+        <p class="featured-text">Book Tickets for Our Latest Show on BookMyShow</p>
+      </a>
+
+      <section class="link-stack" aria-label="Quick links">
+        <a class="link-btn" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-masks-theater" aria-hidden="true"></i>
+          <span>Our Upcoming Productions &amp; Workshops</span>
+        </a>
+        <a class="link-btn" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+          <span>Watch Trailers &amp; Rehearsal Glimpses (YouTube)</span>
+        </a>
+        <a class="link-btn" href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          <span>Behind the Scenes &amp; Cast Announcements (Instagram)</span>
+        </a>
+        <a class="link-btn" href="#" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+          <span>Read Press Coverage &amp; Media Features</span>
+        </a>
+      </section>
+
+      <section class="video-hub" aria-label="Show trailers and clips">
+        <p class="section-label">Watch &amp; Listen</p>
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Bias Check Theatre show trailer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="newsletter" aria-label="Newsletter signup">
+        <h2>Stay in the loop</h2>
+        <form class="newsletter-form" action="#" method="post">
+          <input
+            type="email"
+            name="email"
+            placeholder="Join our inner circle for show updates..."
+            required
+            autocomplete="email"
+          >
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Bias Check Theatre. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
